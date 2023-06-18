@@ -20,7 +20,7 @@
 
 
 ## 🔗 Ссылка на проект:
-[Проект: Место](https://dmitrykazancev.github.io/mesto/)
+[Проект: Место-React](https://dmitrykazancev.github.io/mesto-react/)
 
 
 ## 🚀 Обо мне

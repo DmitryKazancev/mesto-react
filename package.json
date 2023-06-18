@@ -1,7 +1,10 @@
 {
   "name": "mesto-react",
-  "homepage": "https://github.com/DmitryKazancev/mesto-react",
+  "homepage": ".",
   "version": "0.1.0",
+  "repository": {
+    "url": "git+https://github.com/dmitrykazancev/mesto-react.git"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

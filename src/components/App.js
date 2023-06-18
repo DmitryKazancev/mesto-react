@@ -12,8 +12,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-  const [isImagePopup, setIsImagePopup] = useState(false);
-
+  
   //Click to avatar button function
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -34,13 +33,12 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setIsImagePopup(false);
+    setSelectedCard({});
   }
 
   //Click to image and open popup with image function
   function handleCardClick(card) {
     setSelectedCard(card);
-    setIsImagePopup(true);
   }
 
   return (
@@ -133,7 +131,7 @@ function App() {
 
         <PopupWithForm name='delete-card' title='Вы уверены?' textButton='Да' />
 
-        <ImagePopup card={selectedCard} isOpen={isImagePopup} onClose={closeAllPopups} />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </>
   );

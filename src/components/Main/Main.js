@@ -59,7 +59,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                     onClick={onAddPlace}
                 />
             </section>
-            
+
             {/*Section ELEMENTS*/}
             <section className="elements" aria-label="Карточки с местами">
                 {cards.map(data => {

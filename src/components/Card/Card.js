@@ -16,7 +16,7 @@ export default function Card({ card, onCardClick }) {
                         aria-label="Поставить лайк"
                     />
                     <span id="likes" className="element__likes-number">
-                        0
+                        {card.likes.length}
                     </span>
                 </div>
             </div>

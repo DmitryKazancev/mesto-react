@@ -1,4 +1,5 @@
-export default function PopupWithForm({ name, title, textButton, children, isOpen, onClose }) {
+export default function PopupWithForm({ name, title, textButton, children, isOpen, onClose, isValid, onSubmit }) {
+
     return (
         <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`} >
             <div className="popup__container">
@@ -13,9 +14,10 @@ export default function PopupWithForm({ name, title, textButton, children, isOpe
                     className="popup__content popup__content-author"
                     name={name}
                     noValidate=""
+                    onSubmit={onSubmit}
                 >
                     {children}
-                    <button type="submit" className="popup__button" aria-label="Сохранить">
+                    <button type="submit" className={`popup__button ${isValid ? '' : 'popup__button_invalid'}`} aria-label="Сохранить">
                         {textButton}
                     </button>
                 </form>

@@ -1,31 +1,10 @@
-import { useEffect, useState } from "react"
-import api from "../../utils/api.js";
 import Card from "../Card/Card.js";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
+export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete }) {
 
-    //States
-    const [userName, setUserName] = useState('');
-    const [userDescription, setUserDescription] = useState('');
-    const [userAvatar, setUserAvatar] = useState('');
-    const [cards, setCards] = useState([]);
-
-    //Get card and user info function
-    useEffect(() => {
-        Promise.all([api.getUserInfo(), api.getCards()])
-            .then(([infoUser, infoCards]) => {
-                setUserName(infoUser.name);
-                setUserDescription(infoUser.about);
-                setUserAvatar(infoUser.avatar)
-                infoCards.forEach(element => {
-                    element.userId = infoUser._id;
-                })
-                setCards(infoCards);
-            })
-            .catch(error => {
-                console.error(`Ошибка запроса данных с сервера ${error}`)
-            })
-    }, [])
+    const currentUser = useContext(CurrentUserContext);
 
     return (
         <main className="content">
@@ -37,11 +16,11 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                         className="profile__button-avatar"
                         aria-label="Изменить автар автора"
                         onClick={onEditAvatar}>
-                        <img src={userAvatar} alt="Аватар профиля" className="profile__avatar" />
+                        <img src={currentUser.avatar} alt="Аватар профиля" className="profile__avatar" />
                     </button>
                     <div className="profile__info">
                         <div className="profile__info-list">
-                            <h1 className="profile__info-author" >{userName}</h1>
+                            <h1 className="profile__info-author" >{currentUser.name}</h1>
                             <button
                                 type="button"
                                 className="profile__button-edit"
@@ -49,7 +28,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                                 onClick={onEditProfile}
                             />
                         </div>
-                        <p className="profile__info-description">{userDescription}</p>
+                        <p className="profile__info-description">{currentUser.about}</p>
                     </div>
                 </div>
                 <button
@@ -59,13 +38,12 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                     onClick={onAddPlace}
                 />
             </section>
-
             {/*Section ELEMENTS*/}
             <section className="elements" aria-label="Карточки с местами">
                 {cards.map(data => {
                     return (
                         <li key={data._id} >
-                            <Card card={data} onCardClick={onCardClick} />
+                            <Card card={data} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} />
                         </li>
                     )
                 })}

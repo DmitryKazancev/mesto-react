@@ -14,7 +14,6 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log(input.current.value)
     onUpdateAvatar({ linkAvatar: input.current.value }, resetForm);
   }
 

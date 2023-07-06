@@ -1,10 +1,8 @@
-import { useRef } from "react";
-import useFormValidator from "../../utils/useFormValidator";
+import useFormValidator from "../../hooks/useFormValidator";
 import PopupWithForm from "../PopupWithForms/PopupWithForm";
 
 export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
-  const input = useRef();
   const { inputValues, inputErrors, isValid, isInputValid, handleChange, resetForm } = useFormValidator();
 
   function closePopup() {
@@ -14,13 +12,12 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onUpdateAvatar({ linkAvatar: input.current.value }, resetForm);
+    onUpdateAvatar({ linkAvatar: inputValues.linkAvatar }, resetForm);
   }
 
   return (
     <PopupWithForm name='update-avatar' title='Обновить аватар' textButton='Сохранить' isOpen={isOpen} onClose={closePopup} onSubmit={handleSubmit} isValid={isValid}>
       <input
-        ref={input}
         id="link-avatar"
         type="url"
         placeholder="Введите ссылку на аватар"

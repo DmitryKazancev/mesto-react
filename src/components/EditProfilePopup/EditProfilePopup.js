@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import useFormValidator from "../../utils/useFormValidator";
+import useFormValidator from "../../hooks/useFormValidator";
 import PopupWithForm from "../PopupWithForms/PopupWithForm";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 

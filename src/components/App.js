@@ -49,19 +49,20 @@ function App() {
     setSelectedCard(card);
   }
 
+  
   //Delete card function
   function handleCardDelete(card) {
-    const currentCard = card;
-    api.deleteCard(currentCard._id)
-      .then(() => {
-        setCards(cards.filter(card => {
-          return card._id !== currentCard._id
-        }))
-      })
-      .catch(error => {
-        console.error(`Ошибка удаления карточки ${error}`)
-      })
-  }
+  const currentCard = card;
+  api.deleteCard(currentCard._id)
+    .then(() => {
+      setCards(prevCards => prevCards.filter(card => {
+        return card._id !== currentCard._id
+      }))
+    })
+    .catch(error => {
+      console.error(`Ошибка удаления карточки ${error}`)
+    })
+}
 
   //Set or delete like to card function
   function handleCardLike(card) {

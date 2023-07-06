@@ -1,4 +1,4 @@
-import useFormValidator from "../../utils/useFormValidator";
+import useFormValidator from "../../hooks/useFormValidator";
 import PopupWithForm from "../PopupWithForms/PopupWithForm";
 
 export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
